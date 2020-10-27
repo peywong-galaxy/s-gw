@@ -1,4 +1,4 @@
-package httpmod
+package gin_middleware
 
 import (
 	"github.com/gin-gonic/gin"

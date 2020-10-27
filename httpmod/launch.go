@@ -1,6 +1,10 @@
 package httpmod
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/peywong-galaxy/s-gw/httpmod/api"
+	"github.com/peywong-galaxy/s-gw/httpmod/gin-middleware"
+)
 
 func LaunchHttp() {
 	gin.DisableConsoleColor()
@@ -8,12 +12,12 @@ func LaunchHttp() {
 
 	eng := gin.New()
 	v1 := eng.Group("/api")
-	v1.Use(AddLogger())
-	v1.Use(AddSequence())
+	v1.Use(gin_middleware.AddLogger())
+	v1.Use(gin_middleware.AddSequence())
 	{
-		v1.GET("/register", registerhandler)
-		v1.GET("/login", loginhandler)
-		v1.GET("/logout", logouthandler)
+		v1.GET("/register", api.Registerhandler)
+		v1.GET("/login", api.Loginhandler)
+		v1.GET("/logout", api.Logouthandler)
 	}
 	_ = eng.Run(":8080")
 }
