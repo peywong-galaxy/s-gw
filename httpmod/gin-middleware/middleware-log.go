@@ -25,9 +25,9 @@ func AddLogger() gin.HandlerFunc {
 
 		c.Next()
 		endTime := time.Now()
-		Duration := endTime.Sub(startTime)
+		Duration := endTime.Sub(startTime).String()
 
 		log.Logger.Info("gin end in process request",
-			zap.Duration("Duration", Duration))
+			zap.String("Duration", Duration))
 	}
 }
